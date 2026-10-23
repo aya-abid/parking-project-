@@ -14,3 +14,12 @@ DIP - ParkingGarage - private final FileLogger logger = new FileLogger("parking.
    b- None
    c- ParkingGarage
    d- ParkingGarage
+
+4- The program crashes with an UnsupportedOperationException, and the remaining instructions are not executed.
+The LSP is the violated principle. The instanceof test is a workaround that hides the LSP violation instead of fixing it.
+
+5- With the current design, we can test the fee of a truck parked for 4 hours, but when we try to test checkout, the checkout() method always calls logger.log(receipt) and this write to parking.log
+
+8- With the refactored design, cancelling a cash payment through a method requiring RefundablePayment causes a compile-time error, because CashPayment implements only PaymentMethod. Unlike question 4, where the program crashed at runtime with UnsupportedOperationException, the invalid operation is prevented at compile time.
+
+9- Create a ParkingServiceTest using the three tariff classes and a fake ReceiptLogger that does nothing instead of writing to a file. This fake logger lets you test the fees and daily report without creating parking.log

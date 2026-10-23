@@ -10,6 +10,12 @@ public class Main {
         Vehicle bike  = new Vehicle("67890-B-1", "MOTORBIKE");
         Vehicle truck = new Vehicle("24680-D-8", "TRUCK");
 
+        ParkingGarage garage2 = new ParkingGarage();
+        Vehicle truck2 = new Vehicle("24680-D-8", "TRUCK");
+
+        System.out.println(garage2.fee(truck2, 4));
+        garage2.checkout(truck2, 4, new CardPayment("4242"));
+
         PaymentMethod card = new CardPayment("4242");
         PaymentMethod cash = new CashPayment();
 
