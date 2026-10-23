@@ -1,0 +1,23 @@
+1- the actors that may request changes to parking garage are : the payment team, pricing team, logging team.
+the payment team: If payment processing or refund rules change, the checkout() or cancel() methods will need to change
+the pricing team: if parking fees change, the fee() method will need to change
+the logging team: the logging mechanism might change, for example if they want to store the receipts in a database instead of a file
+
+2-
+SRP - ParkingGarage - fee(), checkout(), cancel(), dailyReport()
+OCP - ParkingGarage - switch (vehicle.getType())
+LSP - CashPayment - throw new UnsupportedOperationException(...)
+ISP - PaymentMethod - void pay(double amount) and void refund(double amount)
+DIP - ParkingGarage - private final FileLogger logger = new FileLogger("parking.log")
+
+3- a- ParkingGarage
+   b- None
+   c- ParkingGarage
+   d- ParkingGarage
+
+4- The program crashes with an UnsupportedOperationException, and the remaining instructions are not executed.
+The LSP is the violated principle. The instanceof test is a workaround that hides the LSP violation instead of fixing it.
+
+5- With the current design, we can test the fee of a truck parked for 4 hours, but when we try to test checkout, the checkout() method always calls logger.log(receipt) and this write to parking.log
+
+6-
